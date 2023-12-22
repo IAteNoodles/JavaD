@@ -147,6 +147,36 @@ class LinkedList
     System.out.println();
   }
 
+  public void sort()
+  {
+    boolean isChanged = false;
+    //Sorting technique
+    /*
+     * Best case: O(n)
+     * Worst case: O(n2)
+     */
+    do
+    {
+      Node current = head;
+      Node next = current.next;
+      isChanged = false;
+      do
+      {
+        int nextValue = next.data;
+        if (current.data > nextValue)
+        {
+          isChanged = true;
+          current.next.data = current.data;
+          current.data = nextValue;
+          
+        }
+        current = current.next;
+        next = current.next;
+      }while(current.next != null);
+    }while(isChanged);
+  }
+
+  
   public static void main(String[] args)
   {
     LinkedList list = new LinkedList();
@@ -159,6 +189,10 @@ class LinkedList
     list.print();
     list.reverse();
     list.insert(56,3);
+    list.print();
+    list.sort();
+    list.print();
+    list.reverse();
     list.print();
   }
 }
