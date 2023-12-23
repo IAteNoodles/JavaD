@@ -1,3 +1,5 @@
+import java.util.Random;
+
 class Node
   {
     int data;
@@ -149,12 +151,13 @@ class LinkedList
 
   public void sort()
   {
-    boolean isChanged = false;
-    //Sorting technique
-    /*
+    //Sorting techniques
+    /* Implementation of BubbleSort
      * Best case: O(n)
      * Worst case: O(n2)
      */
+
+    boolean isChanged = false;
     do
     {
       Node current = head;
@@ -174,26 +177,81 @@ class LinkedList
         next = current.next;
       }while(current.next != null);
     }while(isChanged);
+    
+    /*Implementation of InsertionSort
+     * Best case:
+     * Worst case:
+     */
+    
   }
 
+  public boolean search(int value)
+  {
+    Node current=head;
+    while(current.next != null)
+    {
+      if (current.data == value)
+      {
+        return true;
+      }
+      current = current.next;
+    }
+    return false;
+  }
   
+  public static LinkedList merge(LinkedList first, LinkedList second)
+  {
+    Node elderNode, childNode;
+    LinkedList parentLinkedList;
+    if (first.head.data<second.head.data)
+    {
+      elderNode = first.head;
+      childNode = second.head;
+      parentLinkedList = first;
+    }
+    else
+    {
+      elderNode = second.head;
+      childNode = first.head;
+      parentLinkedList = second;
+    }
+    while(elderNode.next!=null && childNode.next!=null)
+    {
+
+      if(elderNode.next.data < childNode.data)
+      {
+        elderNode = elderNode.next;
+        continue;
+      }
+      Node next = elderNode.next;
+      elderNode.next = childNode;
+      childNode = childNode.next;
+      elderNode.next.next = next;
+    }
+    if(childNode!=null)
+    {
+      elderNode.next = childNode;
+    }
+    return parentLinkedList;
+  }
   public static void main(String[] args)
   {
-    LinkedList list = new LinkedList();
-    list.append(1);
-    list.append(2);
-    list.append(3);
-    list.append(4);
-    list.print();
-    list.prepend(0);
-    list.print();
-    list.reverse();
-    list.insert(56,3);
-    list.print();
-    list.sort();
-    list.print();
-    list.reverse();
-    list.print();
+    LinkedList list1 = new LinkedList();
+    LinkedList list2 = new LinkedList();
+    list1.append(28);
+    list1.append(29);
+    list1.append(30);
+    list1.append(41);
+    list1.append(62);
+    list2.append(29);
+    list2.append(50);
+    list2.append(60);
+    list2.append(77);
+    list2.append(93);
+    list1.print();
+    list2.print();
+    LinkedList mLinkedList = merge(list1, list2);
+    mLinkedList.print();
   }
 }
 
