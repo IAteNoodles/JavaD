@@ -1,19 +1,9 @@
-import java.util.Random;
-
-class Node
-  {
-    int data;
-    Node next;
-    Node(int data)
-    {
-      this.data = data;
-      this.next = null;
-    }
-  }
-class LinkedList
+package LinkedLists;
+public class LinkedList
 {
-  Node head = null;
-  Node tail = null;
+  public Node head = null;
+  public Node tail = null;
+  public int length = 0;
 
   public void append(int data)
   {
@@ -25,19 +15,8 @@ class LinkedList
       return;
     }
     tail.next = newNode;//Connects the next attribute to the tail
-    tail = newNode;//Updates the tail to the latest 
-  }
-
-  public int length()
-  {
-    int currentCount = 0;
-    Node currentNode = head;
-    while(currentNode.next!=null)
-    {
-      currentCount++;
-      currentNode = currentNode.next;
-    }
-    return currentCount;
+    tail = newNode;//Updates the tail to the latest
+    length ++; //We increment  
   }
 
   public void prepend(int data)
@@ -51,6 +30,7 @@ class LinkedList
     }
     newNode.next = head;//Connects the next attribute to the head
     head = newNode;//Updates the new head
+    length ++; //We increment 
   }
   
   public void insert(int data, int index)
@@ -77,6 +57,7 @@ class LinkedList
       current = current.next;
       curentIndex++;
     }
+    length ++; //We increment 
   }
 
   public void reverse()
@@ -115,32 +96,58 @@ class LinkedList
     head = currentNode;
   }
 
+  public void clear()
+  {
+    head = null;
+    tail = null;
+    length = 0;
+  }
 
   public void delete(int index)
   {
     if(index == 0)
     {
-      head = head.next;
+      if(head!=null)
+      {
+        head = head.next;
+        length--;
+      }  
       return;
     }
-    Node current = head;
-    int curentIndex = 0;
-    while(current != null)
+    if (index>0 && index <length)
     {
-      if(curentIndex == index - 1)
+      length--;
+      Node current = head;
+      int curentIndex = 0;
+      while(current != null)
       {
-        current.next = current.next.next;
-        return;
+        if(curentIndex == index - 1)
+        {
+          current.next = current.next.next;
+          return;
+        }
+        current = current.next;
+        curentIndex++;
       }
-      current = current.next;
-      curentIndex++;
+    }
+    else
+    {
+      //We throw error
     }
   }
 
+  public void rFirst()
+  {
+    head = head.next;
+  }
+
+  public void rLast()
+  {
+    this.delete(this.length-1);
+  }
   public void print()
   {
     Node current = head;
-    System.out.println("The linked list values are:");
     while(current != null)
     {
       System.out.print(current.data + "\t");
@@ -233,6 +240,12 @@ class LinkedList
       elderNode.next = childNode;
     }
     return parentLinkedList;
+  }
+ 
+  public int detectCycle()
+  {
+    //TODO
+    return 0;
   }
   public static void main(String[] args)
   {
