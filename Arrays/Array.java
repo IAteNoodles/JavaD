@@ -120,10 +120,28 @@ public class Array{
             sort(first,true);
             int [] second = subarrays[1];
             sort(second, true);
-            //int merged_Array = merge(first,second);   
-            //return merged_Array;
+            int merged_Array[] = merge(first,second);   
+            return merged_Array;
         }
-        return arr;
+        else
+        {
+            //Quick Sort
+            int pivot = arr[arr.length]; //first element
+            int i=0;
+            int j=0;
+            do
+            {
+                if (arr[j]<pivot)//Smaller
+                {
+                    int temp = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = temp;
+                }
+            }
+
+
+        }
+
     }
     
     

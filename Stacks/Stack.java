@@ -3,7 +3,7 @@ import LinkedLists.*;
 public class Stack {
     int size=0;
     LinkedList stack;
-    Stack()
+    public Stack()
     {
         stack = new LinkedList();
     }
@@ -31,7 +31,7 @@ public class Stack {
 
     public boolean isEmpty()
     {
-        if (stack == null)
+        if (stack.head == null)
         {
             return true;
         }

@@ -185,7 +185,7 @@ public class LinkedList
       }while(current.next != null);
     }while(isChanged);
     
-    /*Implementation of InsertionSort
+    /*Implementation of MergeSort
      * Best case:
      * Worst case:
      */
@@ -243,28 +243,38 @@ public class LinkedList
   }
  
   public int detectCycle()
+
   {
     //TODO
     return 0;
   }
-  public static void main(String[] args)
+
+  public void removeDuplicates()
   {
-    LinkedList list1 = new LinkedList();
-    LinkedList list2 = new LinkedList();
-    list1.append(28);
-    list1.append(29);
-    list1.append(30);
-    list1.append(41);
-    list1.append(62);
-    list2.append(29);
-    list2.append(50);
-    list2.append(60);
-    list2.append(77);
-    list2.append(93);
-    list1.print();
-    list2.print();
-    LinkedList mLinkedList = merge(list1, list2);
-    mLinkedList.print();
+    if (head == null) {
+      return;
+  }
+
+  Node current = head;
+  while (current != null) {
+      Node runner = current;
+      while (runner.next != null) {
+          if (runner.next.data == current.data) {
+              runner.next = runner.next.next; // Remove the duplicate node
+          } else {
+              runner = runner.next;
+          }
+      }
+      current = current.next;
+  }
+  current = head;
+  while (current != null) {
+    System.out.print(current.data + " -> ");
+    current = current.next;
+}
+System.out.println("null");
+
+
   }
 }
 
