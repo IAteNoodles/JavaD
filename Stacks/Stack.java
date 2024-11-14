@@ -45,7 +45,7 @@ public class Stack {
 
     public void sort()
     {
-        
+        stack.sort();
     }
 
     public void clear()
